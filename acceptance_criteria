@@ -1,0 +1,100 @@
+
+# Acceptance Criteria — ML Docker Images
+
+## Overview
+
+This document defines the acceptance criteria for the baseline (fat) and optimized (slim) Docker images.
+
+Both images must provide the same inference functionality. Optimization must not affect prediction results.
+
+## AC-01: Successful Docker Build
+
+**Given** the Dockerfiles, model artifact, and required dependencies are available,
+
+**When** the team builds both Docker images,
+
+**Then**
+- Both builds complete successfully.
+- Images are tagged `ml-infer-fat:1.0` and `ml-infer-slim:1.0`.
+- No build errors occur.
+
+## AC-02: Successful Inference
+
+**Given** a valid test image is available,
+
+**When** inference is executed in each Docker container,
+
+**Then**
+- Both containers complete inference successfully.
+- Each returns the top-3 predicted classes.
+- Each prediction includes a confidence score.
+- No runtime errors occur.
+
+## AC-03: Consistent Prediction Results
+
+**Given** both containers use the same model artifact, preprocessing, and test image,
+
+**When** inference results are compared,
+
+**Then**
+- The top-3 predicted classes are identical and in the same order.
+- Confidence scores match within a tolerance of 0.001.
+- Any differences are documented and investigated.
+
+## AC-04: Image Optimization
+
+**Given** both Docker images are built successfully,
+
+**When** their sizes are measured,
+
+**Then**
+- The size of each image is recorded in MB.
+- The size difference is calculated.
+- The slim image is smaller than the fat image.
+- Optimization does not change inference functionality.
+
+## AC-05: Build Performance Comparison
+
+**Given** both images are built in the same test environment,
+
+**When** their build times are measured,
+
+**Then**
+- Build time is recorded for each image.
+- Results are compared using the same measurement approach.
+- Any significant differences are explained.
+
+## AC-06: Reproducible Deployment
+
+**Given** the repository contains the required configuration and instructions,
+
+**When** another team member follows the documented steps,
+
+**Then**
+- Both Docker images can be built.
+- Both containers can be started.
+- The same test image can be processed successfully.
+
+## AC-07: Documentation and Evidence
+
+**Given** implementation and testing are complete,
+
+**When** the team submits the results for review,
+
+**Then** the following evidence is available:
+- Dockerfiles and dependency specifications.
+- Build and run commands.
+- Test logs and inference results.
+- Docker image sizes.
+- Build time measurements.
+- Optimization comparison report.
+
+## Acceptance Decision
+
+The solution can be accepted when all mandatory criteria pass and supporting evidence is available.
+
+Any failed criterion must be documented and resolved or explicitly accepted as an exception before deployment.
+
+## Current Status
+
+Acceptance criteria defined. Validation has not yet been performed.
