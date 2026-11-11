@@ -1,0 +1,94 @@
+
+# AI/ML Team Task — Docker Image Preparation
+
+## Task Overview
+
+**Task:** Prepare two Docker images for an image classification ML model.
+
+**Priority:** High
+
+**Status:** To Do
+
+## Objective
+
+Package a pretrained image classification model into two Docker images and verify that both produce consistent results.
+
+The optimized image should reduce deployment overhead without changing model behavior.
+
+## Technical Requirements
+
+### 1. Model and Inference
+
+- Use a pretrained model from `torchvision.models`.
+- Save the model artifact as `model/model.pt`.
+- Implement inference in `app/inference.py`.
+- Accept a test image as input.
+- Return the top-3 predicted classes and their scores.
+- Use the same model, preprocessing, and inference logic in both images.
+
+### 2. Baseline Docker Image (Fat)
+
+- Base image: `python:3.13`.
+- Image tag: `ml-infer-fat:1.0`.
+- Include all dependencies required for inference.
+- Provide a Dockerfile and build instructions.
+- Verify that the image builds and runs successfully.
+
+### 3. Optimized Docker Image (Slim)
+
+- Base image: `python:3.13-slim`.
+- Image tag: `ml-infer-slim:1.0`.
+- Use a multi-stage Docker build.
+- Remove unnecessary build dependencies and temporary files.
+- Preserve the same inference functionality as the baseline image.
+
+### 4. Validation
+
+The team must:
+
+- Build and run both Docker images.
+- Run inference on the same test image.
+- Compare the top-3 predictions and scores.
+- Confirm that optimization does not change model behavior.
+- Record any differences or errors.
+
+### 5. Performance Comparison
+
+Measure and document:
+
+- Docker image size (MB).
+- Docker build time (seconds).
+- Inference execution time (milliseconds).
+
+Use the same test environment and input for a fair comparison.
+
+## Expected Deliverables
+
+- Dockerfiles for both images.
+- Dependency specifications.
+- Model artifact and inference script.
+- Build and run instructions.
+- Test results and logs.
+- Image optimization comparison report.
+
+## Definition of Done
+
+The task is complete when:
+
+- Both images build successfully.
+- Both images run inference successfully.
+- Both return matching top-3 predictions.
+- Image size and build time are measured.
+- The optimization results are documented.
+- All required files and instructions are available for review.
+
+## Dependencies and Assumptions
+
+- Docker is available in the test environment.
+- A suitable pretrained model is available.
+- The same test image is used for validation.
+- Required dependencies can be installed.
+
+## Current Status
+
+Task defined. Implementation and validation are pending.
