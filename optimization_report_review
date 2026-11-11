@@ -1,0 +1,103 @@
+
+# Docker Image Optimization — Review Report
+
+## 1. Purpose
+
+This document defines how the AI Product Manager will review and compare the baseline (fat) and optimized (slim) Docker images.
+
+The goal is to determine whether optimization improves deployment efficiency without affecting model functionality, reliability, or security.
+
+## 2. Images Under Review
+
+| Parameter | Fat Image | Slim Image |
+|---|---|---|
+| Image tag | `ml-infer-fat:1.0` | `ml-infer-slim:1.0` |
+| Base image | `python:3.13` | `python:3.13-slim` |
+| Build approach | Standard | Multi-stage |
+| Model artifact | `model/model.pt` | `model/model.pt` |
+| Inference script | `app/inference.py` | `app/inference.py` |
+
+## 3. Performance Comparison
+
+| Metric | Fat Image | Slim Image | Status |
+|---|---|---|---|
+| Image size (MB) | TBD | TBD | Pending |
+| Build time (seconds) | TBD | TBD | Pending |
+| Inference time (ms) | TBD | TBD | Pending |
+| Top-3 predictions | TBD | TBD | Pending |
+| Confidence scores | TBD | TBD | Pending |
+| Security scan | TBD | TBD | Pending |
+
+All measurements must be collected in the same test environment.
+
+## 4. Optimization Evaluation
+
+### Image Size
+
+The optimized image is expected to be smaller than the baseline image.
+
+Size reduction will be calculated as:
+
+`Reduction (%) = (Fat Size - Slim Size) / Fat Size × 100`
+
+### Build Time
+
+Build times must be compared under equivalent conditions.
+
+A smaller image does not necessarily mean a faster build.
+
+### Inference Performance
+
+Both images must process the same test input.
+
+Inference times should be recorded and compared to identify any performance impact.
+
+### Prediction Consistency
+
+Both images must:
+- Return identical top-3 classes in the same order.
+- Produce confidence scores within a tolerance of 0.001.
+- Use identical preprocessing and model artifacts.
+
+### Security
+
+The review must confirm that optimization does not introduce unacceptable security risks.
+
+## 5. Product Impact
+
+A smaller Docker image may provide several benefits:
+
+- Reduced storage requirements.
+- Faster image transfer during deployment.
+- Lower infrastructure overhead.
+- More efficient CI/CD workflows.
+
+These benefits must be confirmed through measurements where applicable.
+
+## 6. Risks and Trade-offs
+
+Potential risks include:
+
+- Missing runtime dependencies in the slim image.
+- Longer build times due to multi-stage configuration.
+- Unexpected inference differences.
+- Compatibility issues between environments.
+- Security vulnerabilities in dependencies.
+
+## 7. Review Decision
+
+**Current status:** Pending measurements and validation.
+
+The slim image can be recommended when:
+
+1. It builds and runs successfully.
+2. It produces matching inference results.
+3. It is smaller than the fat image.
+4. No unacceptable security or reliability issues are identified.
+5. The team provides sufficient testing evidence.
+
+## 8. Conclusion
+
+The optimization approach is defined, but its effectiveness has not yet been verified.
+
+A final recommendation will be made after the AI/ML team provides build results, performance measurements, inference outputs, and security scan results.
