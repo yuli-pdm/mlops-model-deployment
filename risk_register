@@ -1,0 +1,90 @@
+
+# Risk Register — ML Model Containerization
+
+## 1. Purpose
+
+This document identifies potential risks related to building, optimizing, testing, and deploying the ML inference solution using Docker.
+
+The goal is to prevent deployment issues, protect model functionality, and support informed release decisions.
+
+## 2. Risk Assessment Approach
+
+Risks are evaluated using two dimensions:
+
+- **Probability:** Low / Medium / High
+- **Impact:** Low / Medium / High
+
+Risk levels are preliminary estimates and should be reviewed with the technical team.
+
+## 3. Risk Register
+
+| ID | Risk | Probability | Impact | Mitigation | Owner |
+|---|---|---|---|---|---|
+| R01 | Missing dependencies in the slim image | High | High | Validate all runtime dependencies and test inference after optimization | ML Engineer |
+| R02 | Different predictions between fat and slim images | Medium | High | Use identical model artifacts, preprocessing, and regression tests | ML Engineer / QA |
+| R03 | Large Docker image increases deployment overhead | Medium | Medium | Measure image size and remove unnecessary dependencies | DevOps Engineer |
+| R04 | Docker builds fail in different environments | Medium | High | Pin dependency versions and document reproducible build steps | DevOps Engineer |
+| R05 | Security vulnerabilities in container dependencies | Medium | High | Scan images and review vulnerabilities before deployment | DevOps / Security |
+| R06 | Model artifact is missing or corrupted | Low | High | Validate artifact availability and integrity before execution | ML Engineer |
+| R07 | Inference performance is slower than expected | Medium | Medium | Benchmark inference and investigate performance bottlenecks | ML Engineer |
+| R08 | Docker Compose configuration is incorrect | Medium | Medium | Validate Compose configuration and perform local execution tests | DevOps Engineer |
+| R09 | Insufficient test evidence delays approval | Medium | High | Define required evidence and review it before release | QA / Product Manager |
+| R10 | Unclear responsibilities cause delivery delays | Medium | Medium | Assign owners, clarify deliverables, and track progress | Product Manager |
+
+## 4. Priority Risks
+
+The following risks require particular attention:
+
+### R01 — Missing Runtime Dependencies
+
+The slim image may exclude libraries required for model inference.
+
+**Mitigation:** Run automated inference tests after every relevant image change.
+
+### R02 — Prediction Inconsistency
+
+Optimization may accidentally change model behavior.
+
+**Mitigation:** Compare top-3 predictions and confidence scores using the same test inputs.
+
+### R05 — Security Vulnerabilities
+
+Docker images may contain vulnerable dependencies.
+
+**Mitigation:** Perform vulnerability scans and resolve unacceptable findings before deployment.
+
+### R09 — Missing Validation Evidence
+
+Even if the images work, the team may not provide enough evidence for a release decision.
+
+**Mitigation:** Agree on acceptance criteria and required test reports before implementation is completed.
+
+## 5. Risk Monitoring
+
+Risks should be reviewed:
+
+- During implementation.
+- After Docker image builds.
+- After inference and optimization testing.
+- Before deployment approval.
+
+New risks should be added when identified.
+
+## 6. Release Decision
+
+Deployment should not be approved if:
+
+- Mandatory acceptance criteria fail.
+- Model predictions are inconsistent.
+- Critical security issues remain unresolved.
+- Required validation evidence is missing.
+
+Any accepted exceptions must be documented and approved by the responsible stakeholders.
+
+## 7. Current Status
+
+Initial risk assessment completed.
+
+Risk probabilities, impacts, and mitigation plans require confirmation with the technical team.
+
+No implementation or testing evidence has been reviewed yet.
