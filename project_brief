@@ -1,0 +1,45 @@
+
+# Project Brief — ML Image Classification Containerization
+
+## Project Overview
+
+The project focuses on preparing a pretrained image classification model from `torchvision.models` for deployment using Docker.
+
+Two container images will be created and compared: a baseline (fat) image and an optimized (slim) image.
+
+## Business Goal
+
+Ensure that the ML model can be deployed consistently, tested reliably, and maintained efficiently.
+
+## Scope
+
+- Package the same model and inference code into two Docker images.
+- Validate that both images produce matching top-3 predictions.
+- Compare image size and build performance.
+- Assess readiness for local deployment using Docker Compose.
+- Identify deployment risks and communicate results to stakeholders.
+
+## Technical Requirements
+
+- Fat image: `ml-infer-fat:1.0`, based on `python:3.13`.
+- Slim image: `ml-infer-slim:1.0`, based on `python:3.13-slim`, using a multi-stage build.
+- Shared model artifact: `model/model.pt`.
+- Shared inference script: `app/inference.py`.
+
+## Expected Deliverables
+
+- Technical task for the AI/ML team.
+- Acceptance criteria.
+- Docker image review checklist.
+- Optimization comparison report.
+- Docker Compose readiness checklist.
+- Risk register.
+- Stakeholder summary.
+
+## Success Criteria
+
+Both images must build and run successfully, produce matching inference results for the same test input, and provide measurable evidence for comparing deployment efficiency.
+
+## Current Status
+
+Planning and documentation phase. Implementation and testing results have not yet been verified.
