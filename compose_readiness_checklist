@@ -1,0 +1,89 @@
+
+# Docker Compose Readiness Checklist
+
+## 1. Purpose
+
+This checklist defines the requirements for running and validating the ML inference solution locally using Docker Compose.
+
+The goal is to ensure that the application can be started, tested, and maintained consistently across development environments.
+
+## 2. Compose Configuration
+
+- [ ] A `compose.yaml` file is available.
+- [ ] The Compose configuration is valid.
+- [ ] The required inference service is defined.
+- [ ] The correct Docker image is referenced.
+- [ ] Environment variables are documented.
+- [ ] Required volumes and file paths are configured.
+- [ ] No unnecessary services are included.
+
+## 3. Model and Application Readiness
+
+- [ ] The model artifact `model/model.pt` is accessible.
+- [ ] The inference script `app/inference.py` is available.
+- [ ] Required Python dependencies are installed.
+- [ ] The application can load the model successfully.
+- [ ] The same preprocessing logic is used as in previous tests.
+
+## 4. Local Execution
+
+- [ ] Docker Compose starts the inference service successfully.
+- [ ] The container exits successfully after a one-time inference task, or remains running if designed as a service.
+- [ ] A valid test image can be processed.
+- [ ] The application returns the top-3 predicted classes.
+- [ ] Confidence scores are included in the output.
+- [ ] No unexpected runtime errors occur.
+
+## 5. Configuration and Security
+
+- [ ] No passwords, API keys, or tokens are hardcoded.
+- [ ] Sensitive configuration is stored securely.
+- [ ] Unnecessary container privileges are avoided.
+- [ ] Only required ports are exposed.
+- [ ] Resource limits are considered and documented.
+- [ ] Error messages do not expose sensitive information.
+
+## 6. Logs and Troubleshooting
+
+- [ ] Application logs are accessible.
+- [ ] Errors are clearly reported.
+- [ ] Failed inference attempts can be investigated.
+- [ ] Known issues and troubleshooting steps are documented.
+
+## 7. Reproducibility
+
+- [ ] Another team member can follow the setup instructions.
+- [ ] The solution can be started using documented Compose commands.
+- [ ] The same test input produces consistent results.
+- [ ] Required configuration files are version-controlled.
+- [ ] Local execution does not depend on undocumented manual steps.
+
+## 8. Required Evidence
+
+The AI/ML team should provide:
+
+- `compose.yaml` configuration.
+- Commands used to start and stop the solution.
+- Successful execution logs.
+- Sample inference output.
+- Documentation of configuration requirements.
+- Known issues and limitations.
+
+## 9. Readiness Summary
+
+| Review Area | Status |
+|---|---|
+| Compose Configuration | Pending |
+| Model and Application | Pending |
+| Local Execution | Pending |
+| Security | Pending |
+| Logging | Pending |
+| Reproducibility | Pending |
+
+## 10. Final Decision
+
+**Current status:** Not yet validated.
+
+**Recommendation:** Local deployment readiness can be confirmed only after the required checks pass and supporting evidence is reviewed.
+
+Any unresolved issues must be documented before proceeding to the next deployment stage.
