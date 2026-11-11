@@ -1,0 +1,79 @@
+
+# Docker Image Review Checklist
+
+## Purpose
+
+This checklist is used by the AI Product Manager to review the baseline (fat) and optimized (slim) Docker images before deployment.
+
+The review focuses on configuration, functionality, reproducibility, security, and supporting evidence.
+
+## 1. Docker Image Configuration
+
+- [ ] The fat image uses `python:3.13`.
+- [ ] The slim image uses `python:3.13-slim`.
+- [ ] The slim image uses a multi-stage build.
+- [ ] Both images have the required tags:
+  - `ml-infer-fat:1.0`
+  - `ml-infer-slim:1.0`
+- [ ] Both Dockerfiles are available for review.
+- [ ] Dependencies are documented.
+
+## 2. Model and Inference Consistency
+
+- [ ] Both images use the same `model/model.pt`.
+- [ ] Both images use the same `app/inference.py`.
+- [ ] Input image preprocessing is identical.
+- [ ] Both images return top-3 predictions.
+- [ ] Predicted classes match in the same order.
+- [ ] Confidence score differences are within 0.001.
+
+## 3. Build and Runtime Validation
+
+- [ ] Both Docker images build successfully.
+- [ ] Both containers start without errors.
+- [ ] Both containers process a valid test image.
+- [ ] Runtime logs are available.
+- [ ] Build and run commands are documented.
+
+## 4. Optimization Review
+
+- [ ] Image sizes are measured in MB.
+- [ ] Build times are recorded.
+- [ ] Inference execution times are measured.
+- [ ] The slim image is smaller than the fat image.
+- [ ] Optimization does not change prediction results.
+
+## 5. Security and Reliability
+
+- [ ] No passwords, tokens, or secrets are stored in the images.
+- [ ] Dependencies are reviewed for known vulnerabilities.
+- [ ] Unnecessary files are excluded from the images.
+- [ ] Runtime errors are handled appropriately.
+- [ ] The containers do not require unnecessary privileges.
+
+## 6. Documentation and Evidence
+
+- [ ] Dockerfiles and dependency files are available.
+- [ ] Build and run instructions are provided.
+- [ ] Inference test results are documented.
+- [ ] Optimization measurements are recorded.
+- [ ] Known limitations and issues are documented.
+
+## Review Summary
+
+| Review Area | Status |
+|---|---|
+| Image Configuration | Pending |
+| Model Consistency | Pending |
+| Build and Runtime | Pending |
+| Optimization | Pending |
+| Security | Pending |
+| Documentation | Pending |
+
+## Final Review Decision
+
+**Status:** Not yet reviewed
+
+**Open Issues:** To be determined after implementation and testing.
+
+**Recommendation:** Proceed with deployment readiness assessment only after mandatory checks are completed and supporting evidence is available.
